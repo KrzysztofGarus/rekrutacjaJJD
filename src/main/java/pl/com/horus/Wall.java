@@ -11,10 +11,14 @@ public class Wall implements Structure, CompositeBlock {
         this.blocks = blocks;
     }
 
-
-    // zwraca pierwszy znaleziony element o danym kolorze
-    // jesli podczas przeszukiwania natrafi na element typu CompositeBlock,
-    // to przeszukuje go w celu znalezienia pasującego koloru
+    /**
+     * zwraca pierwszy znaleziony element o danym kolorze
+     * @param color
+     * jesli podczas przeszukiwania natrafi na element typu CompositeBlock,
+     * to przeszukuje go w celu znalezienia pasującego koloru
+     **/
+    //
+    //
     @Override
     public Optional<Block> findBlockByColor(String color) {
         for (Block block : blocks){
@@ -32,7 +36,11 @@ public class Wall implements Structure, CompositeBlock {
         return Optional.empty();
     }
 
-    // zwraca listę elementów
+    /**
+     * zwraca listę elementów, które pasują do wzorca
+     * @param material
+     * uwzględnia przeszukiwanie wewnątrz elementu jeśli element jest klasy CompositeBlock
+    **/
     @Override
     public List<Block> findBlocksByMaterial(String material) {
         List<Block> result = new ArrayList<>(0);
@@ -47,7 +55,12 @@ public class Wall implements Structure, CompositeBlock {
         }
         return result;
     }
-
+    /**
+     * zwraca liczbę elementów
+     * przy każdym kolejnym znalezionym bloku zwiększa wartość count o 1,
+     * jeśli napotka na element typu CompositeBlock, to zwiększa wartość count o ilość elementów
+     * które tworzą CompositeBlock pomniejszoną o 1, bo na początku 1 zostało już dodane
+     **/
     @Override
     public int count() {
         int count = 0;
